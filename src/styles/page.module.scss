@@ -1,0 +1,15 @@
+@import './colors.module.scss';
+
+.root {
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.body {
+  position: relative;
+}

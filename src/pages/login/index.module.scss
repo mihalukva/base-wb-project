@@ -1,0 +1,26 @@
+.root {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.leftSide {
+  padding: 20px;
+  width: 400px;
+}
+
+.controls {
+  margin-top: 32px;
+}
+
+.wrapper {
+}
+
+.rightSide {
+  background: url('/static/img/katran.jpg') center/566px no-repeat;
+  width: 100%;
+  height: 100%;
+}

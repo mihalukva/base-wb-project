@@ -1,0 +1,14 @@
+@import 'styles/colors.module.scss';
+@import 'styles/variables.module.scss';
+
+.root {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include layer-1();
+  position: absolute;
+}

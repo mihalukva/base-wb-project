@@ -1,0 +1,40 @@
+# Environment (like as cluster name)
+environment: dataline
+
+replicaCount: 1
+
+image:
+  repository: {{.Helm.Release.Image}}
+  tag: {{.Helm.Release.Tag}}
+  pullPolicy: IfNotPresent
+
+# # Set imagePullSecrets if exist
+imagePullSecrets:
+  - name: gitlab-registry-secret
+
+resources:
+  requests:
+    memory: '100Mi'
+    cpu: '500m'
+  limits:
+    memory: '150Mi'
+    cpu: '500m'
+
+service:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+    - port: 443
+      targetPort: 443
+      protocol: TCP
+      name: https
+
+ports:
+  - name: http
+    containerPort: 80
+    protocol: TCP
+  - name: https
+    containerPort: 443
+    protocol: TCP

@@ -1,0 +1,14 @@
+FROM nexus.wildberries.ru/library/node:alpine3.10 as build
+RUN apk add --no-cache bash gettext
+ARG HASHCOMMIT
+
+ENV REACT_APP_HASHCOMMIT=$HASHCOMMIT
+ENV NODE_ENV=production
+COPY ./ ./
+
+RUN npm ci --also=dev && npm run build
+
+FROM nexus.wildberries.ru/library/nginx:1.20.1-alpine
+COPY --from=build /nginx/nginx.stage.conf /etc/nginx/conf.d/default.conf
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=build /build /usr/share/nginx/html

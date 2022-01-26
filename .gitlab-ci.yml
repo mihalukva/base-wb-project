@@ -1,0 +1,20 @@
+.template_repo: &repo
+  project: 'devops/ci/templates'
+  ref: &ci_tmpl_vers 'release-v2.0.0'
+
+variables:
+  # hold pls
+  CI_TMPL_PROJECT_VERSION: *ci_tmpl_vers
+  # ci vars
+  CI_TMPL_HELM_CHART_NAME: common-deploy
+  CI_TMPL_HELM_CHART_VERSION: 2.0.15
+  # list of services for build & deploy
+  CI_TMPL_HELM_RELEASE_NAMES: lb-manager
+  CI_TMPL_HELM_RELEASE_NAMESPACE: wb-cloud
+  # list of clusters for deploy
+  CI_TMPL_KUBE_CLUSTERS_DEV: k8s.dldevel
+  CI_TMPL_KUBE_CLUSTERS_STAGE: k8s.stage
+  CI_TMPL_KUBE_CLUSTERS_PROD: k8s.datapro,k8s.dataline
+
+include:
+  - { <<: *repo, file: /pipelines/universal.yml }
